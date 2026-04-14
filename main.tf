@@ -93,7 +93,7 @@ resource "azurerm_monitor_metric_alert" "main" {
 
 resource "massdriver_package_alarm" "package_alarm" {
   display_name      = var.display_name
-  cloud_resource_id = azurerm_monitor_metric_alert.alarm.id
+  cloud_resource_id = azurerm_monitor_metric_alert.main.id
   metric {
     name      = local.display_metric_name
     namespace = local.display_metric_namespace
