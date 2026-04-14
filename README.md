@@ -98,7 +98,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_monitor_metric_alert.alarm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_metric_alert) | resource |
+| [azurerm_monitor_metric_alert.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_metric_alert) | resource |
 | [massdriver_package_alarm.package_alarm](https://registry.terraform.io/providers/massdriver-cloud/massdriver/latest/docs/resources/package_alarm) | resource |
 
 ## Inputs
@@ -107,9 +107,9 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aggregation"></a> [aggregation](#input\_aggregation) | The statistic that runs over the metric values. Possible values are Average, Count, Minimum, Maximum, and Total. Required when metric\_name is set. | `string` | `null` | no |
 | <a name="input_alarm_name"></a> [alarm\_name](#input\_alarm\_name) | The name of the metric alert. Must be unique within the resource group. | `string` | n/a | yes |
-| <a name="input_dimensions"></a> [dimensions](#input\_dimensions) | Dimensions for the static metric criteria. | <pre>set(object({<br>    name     = string<br>    operator = string<br>    values   = list(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_dimensions"></a> [dimensions](#input\_dimensions) | Dimensions for the static metric criteria. The dimension operator accepts Include, Exclude, or StartsWith. | <pre>set(object({<br>    name     = string<br>    operator = string<br>    values   = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_display_name"></a> [display\_name](#input\_display\_name) | Short name to display in the Massdriver UI. | `string` | n/a | yes |
-| <a name="input_dynamic_criteria"></a> [dynamic\_criteria](#input\_dynamic\_criteria) | Dynamic threshold criteria configuration. Uses Azure ML to determine thresholds automatically based on historical metric patterns. Set alert\_sensitivity to High, Medium, or Low. Conflicts with static criteria variables (metric\_name, metric\_namespace, etc.). | <pre>object({<br>    metric_namespace         = string<br>    metric_name              = string<br>    aggregation              = string<br>    operator                 = string<br>    alert_sensitivity        = string<br>    evaluation_total_count   = optional(number)<br>    evaluation_failure_count = optional(number)<br>    ignore_data_before       = optional(string)<br>    dimensions = optional(set(object({<br>      name     = string<br>      operator = string<br>      values   = list(string)<br>    })), [])<br>  })</pre> | `null` | no |
+| <a name="input_dynamic_criteria"></a> [dynamic\_criteria](#input\_dynamic\_criteria) | Dynamic threshold criteria configuration. Uses Azure ML to determine thresholds automatically based on historical metric patterns. Set alert\_sensitivity to High, Medium, or Low. The operator must be LessThan, GreaterThan, or GreaterOrLessThan (differs from static criteria). Conflicts with static criteria variables (metric\_name, metric\_namespace, etc.). | <pre>object({<br>    metric_namespace         = string<br>    metric_name              = string<br>    aggregation              = string<br>    operator                 = string<br>    alert_sensitivity        = string<br>    evaluation_total_count   = optional(number)<br>    evaluation_failure_count = optional(number)<br>    ignore_data_before       = optional(string)<br>    dimensions = optional(set(object({<br>      name     = string<br>      operator = string<br>      values   = list(string)<br>    })), [])<br>  })</pre> | `null` | no |
 | <a name="input_frequency"></a> [frequency](#input\_frequency) | The evaluation frequency represented in ISO 8601 duration format. Possible values are PT1M, PT5M, PT15M, PT30M, and PT1H. | `string` | n/a | yes |
 | <a name="input_md_metadata"></a> [md\_metadata](#input\_md\_metadata) | Massdriver metadata object, must include name\_prefix. | `any` | n/a | yes |
 | <a name="input_message"></a> [message](#input\_message) | Message to include in the alarm description. | `string` | n/a | yes |
