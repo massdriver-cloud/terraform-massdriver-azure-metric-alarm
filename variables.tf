@@ -93,7 +93,7 @@ variable "dimensions" {
     values   = list(string)
   }))
   default     = []
-  description = "Dimensions for the static metric criteria."
+  description = "Dimensions for the static metric criteria. The dimension operator accepts Include, Exclude, or StartsWith."
 }
 
 # Dynamic Criteria Mode
@@ -118,5 +118,5 @@ variable "dynamic_criteria" {
     })), [])
   })
   default     = null
-  description = "Dynamic threshold criteria configuration. Uses Azure ML to determine thresholds automatically based on historical metric patterns. Set alert_sensitivity to High, Medium, or Low. Conflicts with static criteria variables (metric_name, metric_namespace, etc.)."
+  description = "Dynamic threshold criteria configuration. Uses Azure ML to determine thresholds automatically based on historical metric patterns. Set alert_sensitivity to High, Medium, or Low. The operator must be LessThan, GreaterThan, or GreaterOrLessThan (differs from static criteria). Conflicts with static criteria variables (metric_name, metric_namespace, etc.)."
 }
