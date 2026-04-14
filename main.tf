@@ -7,7 +7,7 @@ locals {
   display_statistic        = local.is_dynamic ? var.dynamic_criteria.aggregation : var.aggregation
 }
 
-resource "azurerm_monitor_metric_alert" "alarm" {
+resource "azurerm_monitor_metric_alert" "main" {
   name                = var.alarm_name
   resource_group_name = var.resource_group_name
   scopes              = var.scopes
